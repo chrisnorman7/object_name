@@ -56,7 +56,6 @@ class ObjectNameFrame(wx.Frame):
   s1.Add(wx.StaticText(p, label = '&Object Text'), 0, wx.GROW)
   self.text = wx.TextCtrl(p, style = wx.TE_MULTILINE)
   s1.Add(self.text, 1, wx.GROW)
-  self.setText(text)
   s.Add(s1, 1, wx.GROW)
   s2 = wx.BoxSizer(wx.VERTICAL)
   self.closeButton = wx.Button(p, label = 'Close &Window')
@@ -78,8 +77,7 @@ class ObjectNameFrame(wx.Frame):
   self.menu.Append(self.editMenu, '&Edit')
   self.SetMenuBar(self.menu)
   self.Bind(wx.EVT_CLOSE, self.onClose)
-  self.Raise()
-  self.Show(True)
+  self.setText(text)
  
  def Show(self, value = True):
   """Show the window, maximizing in the process."""
@@ -108,6 +106,9 @@ class ObjectNameFrame(wx.Frame):
  def setText(self, text):
   """Set the text field to the provided text."""
   self.text.SetValue(text)
+  self.Raise()
+  self.Show(True)
+ 
  def onClose(self, event):
   """Close the window, clearing frame first."""
   global frame
